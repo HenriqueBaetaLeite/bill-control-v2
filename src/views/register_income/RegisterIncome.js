@@ -14,7 +14,7 @@ import {
   CButton,
 } from "@coreui/react";
 
-const Colors = () => {
+const RegisterIncome = () => {
   const [produto, setProduto] = useState({});
   const [valorProd, setValorProd] = useState({});
   const [despesa, setDespesa] = useState({});
@@ -47,13 +47,13 @@ const Colors = () => {
   return (
     <>
       <CCard>
-        <CCardHeader>Contas à pagar</CCardHeader>
+        <CCardHeader>Receitas</CCardHeader>
         <CCardBody>
           <CRow>
             <CCol>
               <CForm action="" method="post">
                 <CFormGroup>
-                  <CLabel htmlFor="nf-prod">Produto/Serviço</CLabel>
+                  <CLabel htmlFor="nf-prod">Origem</CLabel>
                   <CInput
                     onChange={handleChange}
                     type="text"
@@ -61,7 +61,7 @@ const Colors = () => {
                     name="nf-prod"
                     placeholder="Digite aqui"
                   />
-                  <CFormText className="help-block">Digite o nome</CFormText>
+                  {/* <CFormText className="help-block">Digite o nome</CFormText> */}
                 </CFormGroup>
                 <CFormGroup>
                   <CLabel htmlFor="nf-valor">Valor</CLabel>
@@ -73,7 +73,7 @@ const Colors = () => {
                     placeholder="R$ ..."
                   />
                   {/* <CFormText className="help-block">Digite o valor</CFormText> */}
-                  <CButton onClick={handleSubmit}>Salvar Despesa</CButton>
+                  <CButton onClick={handleSubmit}>Salvar Receita</CButton>
                 </CFormGroup>
               </CForm>
             </CCol>
@@ -84,4 +84,4 @@ const Colors = () => {
   );
 };
 
-export default Colors;
+export default RegisterIncome;

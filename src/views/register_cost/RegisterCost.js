@@ -14,7 +14,7 @@ import {
   CButton,
 } from "@coreui/react";
 
-const Colors = () => {
+const RegisterCost = () => {
   const [produto, setProduto] = useState({});
   const [valorProd, setValorProd] = useState({});
   const [despesa, setDespesa] = useState({});
@@ -43,6 +43,7 @@ const Colors = () => {
     setDespesa({ produto, valorProd });
   };
   console.log(despesa);
+  localStorage.setItem("despesas", JSON.stringify(despesa));
 
   return (
     <>
@@ -61,7 +62,7 @@ const Colors = () => {
                     name="nf-prod"
                     placeholder="Digite aqui"
                   />
-                  <CFormText className="help-block">Digite o nome</CFormText>
+                  {/* <CFormText className="help-block">Digite o nome</CFormText> */}
                 </CFormGroup>
                 <CFormGroup>
                   <CLabel htmlFor="nf-valor">Valor</CLabel>
@@ -73,8 +74,10 @@ const Colors = () => {
                     placeholder="R$ ..."
                   />
                   {/* <CFormText className="help-block">Digite o valor</CFormText> */}
-                  <CButton onClick={handleSubmit}>Salvar Despesa</CButton>
                 </CFormGroup>
+                <CButton className="btn btn-primary" onClick={handleSubmit}>
+                  Salvar Despesa
+                </CButton>
               </CForm>
             </CCol>
           </CRow>
@@ -84,4 +87,4 @@ const Colors = () => {
   );
 };
 
-export default Colors;
+export default RegisterCost;

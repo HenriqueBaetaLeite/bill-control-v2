@@ -33,6 +33,10 @@ const Alerts = React.lazy(() => import('./views/notifications/alerts/Alerts'));
 const Badges = React.lazy(() => import('./views/notifications/badges/Badges'));
 const Modals = React.lazy(() => import('./views/notifications/modals/Modals'));
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'));
+
+const RegisterCost = React.lazy(() => import('./views/register_cost/RegisterCost'));
+const RegisterIncome = React.lazy(() => import('./views/register_income/RegisterIncome'));
+
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'));
 const Widgets = React.lazy(() => import('./views/widgets/Widgets'));
 const Users = React.lazy(() => import('./views/users/Users'));
@@ -43,6 +47,10 @@ const routes = [
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/theme', name: 'Theme', component: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', component: Colors },
+
+  { path: '/register/cost', name: 'Registrar Despesa', component: RegisterCost },
+  { path: '/register/income', name: 'Registrar Receita', component: RegisterIncome },
+
   { path: '/theme/typography', name: 'Typography', component: Typography },
   { path: '/base', name: 'Base', component: Cards, exact: true },
   { path: '/base/breadcrumbs', name: 'Breadcrumbs', component: Breadcrumbs },
