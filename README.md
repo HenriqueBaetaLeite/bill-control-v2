@@ -1,3 +1,7 @@
+<h2>Controle pessoal de finanças v2</h2>
+<p>Pequeno app utilizando o dashboard do coreUI free React template.</p>
+
+
 [![@coreui coreui](https://img.shields.io/badge/@coreui%20-coreui-lightgrey.svg?style=flat-square)](https://github.com/coreui/coreui)
 [![npm package][npm-coreui-badge]][npm-coreui]
 [![NPM downloads][npm-coreui-download]][npm-coreui]  
