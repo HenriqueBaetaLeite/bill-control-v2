@@ -14,6 +14,10 @@ import {
   CInputGroupText,
   CRow,
   CAlert,
+  CToaster,
+  CToast,
+  CToastBody,
+  CToastHeader,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 
@@ -21,7 +25,7 @@ const Login = () => {
   const history = useHistory();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [createAlert, setCreateAlert] = useState(false);
+  const [createToaster, setCreateToaster] = useState(false);
 
   const handleLogin = () => {
     if (username === "Ricardo" && password === "123456") {
@@ -29,10 +33,11 @@ const Login = () => {
     }
     setUsername("");
     setPassword("");
-    setCreateAlert(true);
+    setCreateToaster(true);
   };
 
   const handleChange = (e) => {
+    setCreateToaster(false);
     const { value, name } = e.target;
     console.log(value, name);
     switch (name) {
@@ -52,13 +57,22 @@ const Login = () => {
           <CCol md="8">
             <CCardGroup>
               <CCard className="p-4">
+                {createToaster && (
+                  <CToaster position="top-center">
+                    <CToast
+                      key={1.2}
+                      show={true}
+                      autohide={6000}
+                      fade={true}
+                      color="danger"
+                    >
+                      <CToastHeader>Erro</CToastHeader>
+                      <CToastBody>Login ou senha incorretos</CToastBody>
+                    </CToast>
+                  </CToaster>
+                )}
                 <CCardBody>
                   <CForm>
-                    {createAlert && (
-                      <CAlert fade color="warning">
-                        Usuário e/ou senha incorretos...
-                      </CAlert>
-                    )}
                     <h1>Login</h1>
                     <p className="text-muted">Acesse sua conta</p>
                     <CInputGroup className="mb-3">
@@ -101,11 +115,6 @@ const Login = () => {
                           Login
                         </CButton>
                       </CCol>
-                      {/* <CCol xs="6" className="text-right">
-                        <CButton color="link" className="px-0">
-                          Forgot password?
-                        </CButton>
-                      </CCol> */}
                     </CRow>
                   </CForm>
                 </CCardBody>
@@ -118,8 +127,8 @@ const Login = () => {
                   <div>
                     <h2>Controle de Finanças Pessoais</h2>
                     <p>
-                      Tenha total controle sobre suas finanças.
-                      Visualização em gráficos e tabelas, você decide.
+                      Tenha total controle sobre suas finanças. Visualização em
+                      gráficos e tabelas, você decide.
                     </p>
                     <Link to="/register">
                       <CButton

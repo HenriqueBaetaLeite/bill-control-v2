@@ -24,7 +24,7 @@ const TheSidebar = () => {
   return (
     <CSidebar
       className="bg-info"
-      show={show}
+      show={!show}
       onShowChange={(val) => dispatch({ type: "set", sidebarShow: val })}
     >
       <CSidebarBrand className="d-md-down-none" to="/">

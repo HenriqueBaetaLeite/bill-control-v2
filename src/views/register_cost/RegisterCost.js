@@ -1,4 +1,4 @@
-import React, { useEffect, useState, createRef } from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   CRow,
@@ -41,9 +41,9 @@ const RegisterCost = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setDespesa({ produto, valorProd });
+    localStorage.setItem("despesas", JSON.stringify(despesa));
   };
   console.log(despesa);
-  localStorage.setItem("despesas", JSON.stringify(despesa));
 
   return (
     <>
@@ -62,7 +62,9 @@ const RegisterCost = () => {
                     name="nf-prod"
                     placeholder="Digite aqui"
                   />
-                  {/* <CFormText className="help-block">Digite o nome</CFormText> */}
+                  <CFormText className="help-block">
+                    Digite o nome ou descrição do produto/serviço
+                  </CFormText>
                 </CFormGroup>
                 <CFormGroup>
                   <CLabel htmlFor="nf-valor">Valor</CLabel>
@@ -73,7 +75,9 @@ const RegisterCost = () => {
                     name="nf-valor"
                     placeholder="R$ ..."
                   />
-                  {/* <CFormText className="help-block">Digite o valor</CFormText> */}
+                  <CFormText className="help-block">
+                    Digite o valor total da despesa
+                  </CFormText>
                 </CFormGroup>
                 <CButton className="btn btn-primary" onClick={handleSubmit}>
                   Salvar Despesa
