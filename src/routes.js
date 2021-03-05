@@ -34,8 +34,11 @@ const Badges = React.lazy(() => import('./views/notifications/badges/Badges'));
 const Modals = React.lazy(() => import('./views/notifications/modals/Modals'));
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'));
 
-const RegisterCost = React.lazy(() => import('./views/register_cost/RegisterCost'));
-const RegisterIncome = React.lazy(() => import('./views/register_income/RegisterIncome'));
+const ExpenseDashboard = React.lazy(() => import('./views/expense/expenseDashboard/ExpenseDashboard'));
+const ExpenseRegister = React.lazy(() => import('./views/expense/expenseRegister/ExpenseRegister'));
+
+const IncomeDashboard = React.lazy(() => import('./views/income/incomeDashboard/IncomeDashboard'));
+const IncomeRegister = React.lazy(() => import('./views/income/incomeRegister/IncomeRegister'));
 
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'));
 const Widgets = React.lazy(() => import('./views/widgets/Widgets'));
@@ -48,8 +51,11 @@ const routes = [
   { path: '/theme', name: 'Theme', component: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', component: Colors },
 
-  { path: '/register/cost', name: 'Registrar Despesa', component: RegisterCost },
-  { path: '/register/income', name: 'Registrar Receita', component: RegisterIncome },
+  { path: '/expense/dashboard', name: 'Passivos', component: ExpenseDashboard },
+  { path: '/expense/register', name: 'Registrar passivo', component: ExpenseRegister },
+
+  { path: '/income/dashboard', name: 'Ativos', component: IncomeDashboard },
+  { path: '/income/register', name: 'Registrar ativo', component: IncomeRegister },
 
   { path: '/theme/typography', name: 'Typography', component: Typography },
   { path: '/base', name: 'Base', component: Cards, exact: true },

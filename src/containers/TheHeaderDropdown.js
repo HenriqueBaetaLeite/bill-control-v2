@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import {
   CDropdown,
   CDropdownItem,
@@ -8,15 +8,10 @@ import {
 import CIcon from "@coreui/icons-react";
 
 const TheHeaderDropdown = () => {
-  let openIcon = useRef(null);
   return (
     <CDropdown inNav className="c-header-nav-items mx-2" direction="down">
       <CDropdownToggle className="c-header-nav-link" caret={false}>
-        <CIcon
-          ref={(el) => (openIcon = el)}
-          name="cilAperture"
-          className="mfe-2"
-        />
+        <CIcon name="cilAperture" className="mfe-2" />
       </CDropdownToggle>
       <CDropdownMenu className="pt-0" placement="bottom-end">
         <CDropdownItem header tag="div" color="light" className="text-center">

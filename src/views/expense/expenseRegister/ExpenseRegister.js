@@ -1,4 +1,4 @@
-import React, { useEffect, useState, createRef } from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   CRow,
@@ -14,7 +14,7 @@ import {
   CButton,
 } from "@coreui/react";
 
-const RegisterIncome = () => {
+const ExpenseRegister = () => {
   const [produto, setProduto] = useState({});
   const [valorProd, setValorProd] = useState({});
   const [despesa, setDespesa] = useState({});
@@ -41,19 +41,20 @@ const RegisterIncome = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setDespesa({ produto, valorProd });
+    localStorage.setItem("despesas", JSON.stringify(despesa));
   };
   console.log(despesa);
 
   return (
     <>
       <CCard>
-        <CCardHeader>Receitas</CCardHeader>
+        <CCardHeader>Contas à pagar</CCardHeader>
         <CCardBody>
           <CRow>
             <CCol>
               <CForm action="" method="post">
                 <CFormGroup>
-                  <CLabel htmlFor="nf-prod">Origem</CLabel>
+                  <CLabel htmlFor="nf-prod">Produto/Serviço</CLabel>
                   <CInput
                     onChange={handleChange}
                     type="text"
@@ -61,7 +62,9 @@ const RegisterIncome = () => {
                     name="nf-prod"
                     placeholder="Digite aqui"
                   />
-                  {/* <CFormText className="help-block">Digite o nome</CFormText> */}
+                  <CFormText className="help-block">
+                    Digite o nome ou descrição do produto/serviço
+                  </CFormText>
                 </CFormGroup>
                 <CFormGroup>
                   <CLabel htmlFor="nf-valor">Valor</CLabel>
@@ -72,9 +75,13 @@ const RegisterIncome = () => {
                     name="nf-valor"
                     placeholder="R$ ..."
                   />
-                  {/* <CFormText className="help-block">Digite o valor</CFormText> */}
-                  <CButton onClick={handleSubmit}>Salvar Receita</CButton>
+                  <CFormText className="help-block">
+                    Digite o valor total da despesa
+                  </CFormText>
                 </CFormGroup>
+                <CButton className="btn btn-primary" onClick={handleSubmit}>
+                  Salvar Despesa
+                </CButton>
               </CForm>
             </CCol>
           </CRow>
@@ -84,4 +91,4 @@ const RegisterIncome = () => {
   );
 };
 
-export default RegisterIncome;
+export default ExpenseRegister;

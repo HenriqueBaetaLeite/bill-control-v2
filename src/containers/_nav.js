@@ -2,10 +2,10 @@ import React from "react";
 import CIcon from "@coreui/icons-react";
 
 const _nav = [
-  {
-    _tag: "CSidebarNavTitle",
-    _children: ["Menu"],
-  },
+  // {
+  //   _tag: "CSidebarNavTitle",
+  //   _children: ["Menu"],
+  // },
   {
     _tag: "CSidebarNavItem",
     name: "Home",
@@ -13,16 +13,40 @@ const _nav = [
     icon: <CIcon name="cil-home" customClasses="c-sidebar-nav-icon" />,
   },
   {
-    _tag: "CSidebarNavItem",
-    name: "Registrar Despesa",
-    to: "/register/cost",
+    _tag: "CSidebarNavDropdown",
+    name: "Passivos",
+    route: "/cost",
     icon: "cil-send",
+    _children: [
+      {
+        _tag: "CSidebarNavItem",
+        name: "Visualizar passivos",
+        to: "/expense/dashboard",
+      },
+      {
+        _tag: "CSidebarNavItem",
+        name: "Registrar passivo",
+        to: "/expense/register",
+      },
+    ],
   },
   {
-    _tag: "CSidebarNavItem",
-    name: "Registrar Receita",
-    to: "/register/income",
+    _tag: "CSidebarNavDropdown",
+    name: "Ativos",
+    route: "/income",
     icon: "cil-wallet",
+    _children: [
+      {
+        _tag: "CSidebarNavItem",
+        name: "Visualizar ativos",
+        to: "/income/dashboard",
+      },
+      {
+        _tag: "CSidebarNavItem",
+        name: "Registrar ativo",
+        to: "/income/register",
+      },
+    ],
   },
   {
     _tag: "CSidebarNavItem",

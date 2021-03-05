@@ -23,16 +23,17 @@ const TheSidebar = () => {
 
   return (
     <CSidebar
-      className="bg-info"
-      show={!show}
+      // className="bg-info"
+      show={show}
       onShowChange={(val) => dispatch({ type: "set", sidebarShow: val })}
     >
-      <CSidebarBrand className="d-md-down-none" to="/">
+      <CSidebarBrand className="d-md-down-none flex-column" to="/dashboard">
+        {show && <h2 className="c-sidebar-brand-full">RACLeite</h2>}
         <CIcon className="c-sidebar-brand-full" name="cilMoney" height={35} />
         <CIcon
           className="c-sidebar-brand-minimized"
           name="cilCash"
-          height={35}
+          height={25}
         />
       </CSidebarBrand>
       <CSidebarNav>
