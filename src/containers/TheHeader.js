@@ -1,31 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  CHeader,
-  CToggler,
-  CHeaderBrand,
-  CHeaderNav,
-  CHeaderNavItem,
-  CHeaderNavLink,
-  CSubheader,
-  CBreadcrumbRouter,
-  CLink,
-} from "@coreui/react";
-import CIcon from "@coreui/icons-react";
+import { useHistory } from "react-router-dom";
+import { CHeader, CToggler, CHeaderNav } from "@coreui/react";
 
-// routes config
-import routes from "../routes";
-
-import {
-  TheHeaderDropdown,
-  TheHeaderDropdownMssg,
-  TheHeaderDropdownNotif,
-  TheHeaderDropdownTasks,
-} from "./index";
+import { TheHeaderDropdown } from "./index";
 
 const TheHeader = () => {
   const dispatch = useDispatch();
   const sidebarShow = useSelector((state) => state.sidebarShow);
+  const [userData, setUserData] = useState(null);
+  const history = useHistory();
+
+  useEffect(() => {
+    const user = localStorage.getItem("userLogged")
+      ? setUserData(localStorage.getItem("userLogged"))
+      : history.push("/login");
+  }, []);
 
   const toggleSidebar = () => {
     const val = [true, "responsive"].includes(sidebarShow)
@@ -57,7 +47,7 @@ const TheHeader = () => {
       </CHeaderNav>
 
       <CHeaderNav>
-        <h4>UserName</h4>
+        <h4>{userData}</h4>
       </CHeaderNav>
 
       <CHeaderNav>

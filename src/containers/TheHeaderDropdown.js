@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import {
   CDropdown,
   CDropdownItem,
@@ -8,6 +9,11 @@ import {
 import CIcon from "@coreui/icons-react";
 
 const TheHeaderDropdown = () => {
+  const history = useHistory();
+  const logout = () => {
+    localStorage.clear("userLogged");
+    history.push("/login");
+  };
   return (
     <CDropdown inNav className="c-header-nav-items mx-2" direction="down">
       <CDropdownToggle className="c-header-nav-link" caret={false}>
@@ -29,7 +35,7 @@ const TheHeaderDropdown = () => {
           <CIcon name="cil-task" className="mfe-2" />
           Tasks
         </CDropdownItem>
-        <CDropdownItem onClick={() => localStorage.removeItem("userLogged")}>
+        <CDropdownItem onClick={logout}>
           <CIcon name="cilAccountLogout" className="mfe-2" />
           Logout
         </CDropdownItem>

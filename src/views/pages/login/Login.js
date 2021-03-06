@@ -13,11 +13,11 @@ import {
   CInputGroupPrepend,
   CInputGroupText,
   CRow,
-  CAlert,
   CToaster,
   CToast,
   CToastBody,
   CToastHeader,
+  CSpinner,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 
@@ -26,14 +26,21 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [createToaster, setCreateToaster] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleLogin = () => {
+  const handleLogin = (event) => {
+    event.preventDefault();
     if (username === "Ricardo" && password === "123456") {
-      return history.push("/dashboard");
+      localStorage.setItem("userLogged", "Ricardo");
+      setLoading(true);
+      setTimeout(() => {
+        return history.push("/dashboard");
+      }, 3000);
+    } else {
+      setUsername("");
+      setPassword("");
+      setCreateToaster(true);
     }
-    setUsername("");
-    setPassword("");
-    setCreateToaster(true);
   };
 
   const handleChange = (e) => {
@@ -57,6 +64,13 @@ const Login = () => {
           <CCol md="8">
             <CCardGroup>
               <CCard className="p-4">
+                {loading && (
+                  <CSpinner
+                    className="mx-auto"
+                    color="success"
+                    style={{ width: "3rem", height: "3rem" }}
+                  />
+                )}
                 {createToaster && (
                   <CToaster position="top-center">
                     <CToast
@@ -72,7 +86,7 @@ const Login = () => {
                   </CToaster>
                 )}
                 <CCardBody>
-                  <CForm>
+                  <CForm onSubmit={handleLogin}>
                     <h1>Login</h1>
                     <p className="text-muted">Acesse sua conta</p>
                     <CInputGroup className="mb-3">
@@ -82,6 +96,7 @@ const Login = () => {
                         </CInputGroupText>
                       </CInputGroupPrepend>
                       <CInput
+                        autoFocus
                         value={username}
                         name="username"
                         onChange={handleChange}
@@ -108,7 +123,8 @@ const Login = () => {
                     <CRow>
                       <CCol xs="6">
                         <CButton
-                          onClick={handleLogin}
+                          type="submit"
+                          // onClick={handleLogin}
                           color="primary"
                           className="px-4"
                         >
@@ -130,7 +146,7 @@ const Login = () => {
                       Tenha total controle sobre suas finanças. Visualização em
                       gráficos e tabelas, você decide.
                     </p>
-                    <Link to="/register">
+                    {/* <Link to="/register">
                       <CButton
                         color="primary"
                         className="mt-3"
@@ -139,7 +155,7 @@ const Login = () => {
                       >
                         Register Now!
                       </CButton>
-                    </Link>
+                    </Link> */}
                   </div>
                 </CCardBody>
               </CCard>
