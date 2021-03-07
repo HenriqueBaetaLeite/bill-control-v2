@@ -14,7 +14,7 @@
       "url": "https://github.com/orgs/coreui/people"
     }
   ],
-  "homepage": "",
+  "homepage": "/",
   "copyright": "Copyright 2017-2020 creativeLabs Łukasz Holeczek",
   "license": "MIT",
   "private": true,
@@ -33,6 +33,7 @@
     "@wojtekmaj/enzyme-adapter-react-17": "^0.3.2",
     "classnames": "^2.2.6",
     "core-js": "^3.8.1",
+    "dotenv": "^8.2.0",
     "enzyme": "^3.11.0",
     "firebase": "^8.2.10",
     "gsap": "^3.6.0",

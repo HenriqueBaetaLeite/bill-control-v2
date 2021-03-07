@@ -1,4 +1,4 @@
-import React, { lazy } from "react";
+import React, { lazy, useEffect, useState } from "react";
 import {
   CButton,
   CButtonGroup,
@@ -11,17 +11,28 @@ import {
   CRow,
 } from "@coreui/react";
 
-import CIcon from "@coreui/icons-react";
-
 import MainChartExample from "../charts/MainChartExample.js";
+import { db } from "src/utils-service/firebase.js";
 
 const WidgetsDropdown = lazy(() => import("../widgets/WidgetsDropdown.js"));
 
 const Dashboard = () => {
+  const [dataUser, setDataUser] = useState([]);
+  useEffect(() => {
+    getUsers();
+  }, []);
+
+  const getUsers = async () => {
+    const userCollection = db.collection("users");
+    const users = await userCollection.get();
+    users.forEach((doc) => setDataUser((prev) => [...prev, doc.data()]));
+  };
+
   return (
     <>
       <h1>Dash</h1>
       <h2>I'm here!</h2>
+      {dataUser && dataUser.map((doc) => <p>{doc.name}</p>)}
       <WidgetsDropdown />
       <CCard>
         <CCardBody>

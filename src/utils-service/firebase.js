@@ -2,6 +2,8 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firebase-firestore";
 
+import "dotenv/config";
+
 const firebaseConfig = {
   apiKey: "AIzaSyDakzCt2PCDELr0IdkTpoLXPyYAF4NefcU",
   authDomain: "bill-control-54b6f.firebaseapp.com",
@@ -13,17 +15,14 @@ const firebaseConfig = {
 
 const app = firebase.initializeApp(firebaseConfig);
 
-const db = app.firestore();
+export const db = app.firestore();
 
 export const addUser = async (user) => {
-  const isUser = await db.collection("users").doc().set(
-    {
-      name: user.name,
-      email: user.email,
-      password: user.password,
-    },
-    { merge: true }
-  );
+  const isUser = await db.collection("users").doc().set({
+    name: user.name,
+    email: user.email,
+    password: user.password,
+  });
   return isUser;
 };
 
