@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+
 import { CHeader, CToggler, CHeaderNav } from "@coreui/react";
 
 import { TheHeaderDropdown } from "./index";
@@ -8,13 +8,10 @@ import { TheHeaderDropdown } from "./index";
 const TheHeader = () => {
   const dispatch = useDispatch();
   const sidebarShow = useSelector((state) => state.sidebarShow);
-  const [userData, setUserData] = useState(null);
-  const history = useHistory();
+  const [userData, setUserData] = useState("teste");
 
   useEffect(() => {
-    const user = localStorage.getItem("userLogged")
-      ? setUserData(localStorage.getItem("userLogged"))
-      : history.push("/login");
+    setUserData(localStorage.getItem("userLogged"));
   }, []);
 
   const toggleSidebar = () => {

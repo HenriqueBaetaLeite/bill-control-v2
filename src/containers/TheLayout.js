@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { TheContent, TheSidebar, TheFooter, TheHeader } from "./index";
+import { auth } from "src/utils-service/firebase";
 
 const TheLayout = () => {
   const history = useHistory();
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
-    if (localStorage.getItem("userLogged")) {
-      setUserData(localStorage.getItem("userLogged"));
-    } else {
-      history.push("/login");
-    }
-  }, []);
+    auth.onAuthStateChanged((user) => {
+      console.log(user);
+      if (user) {
+        setUserData(user.email);
+      } else {
+        history.push("/login");
+      }
+    });
+  }, [userData]);
 
   return (
     <div className="c-app c-default-layout">

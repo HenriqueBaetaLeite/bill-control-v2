@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+
 import {
   CButton,
   CCard,
@@ -19,26 +20,47 @@ import {
   CToastHeader,
   CSpinner,
 } from "@coreui/react";
+
 import CIcon from "@coreui/icons-react";
+
+import { auth, addUser } from "src/utils-service/firebase";
 
 const Login = () => {
   const history = useHistory();
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [createToaster, setCreateToaster] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [msgError, setMsgError] = useState("");
 
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
-    if (username === "Ricardo" && password === "123456") {
-      localStorage.setItem("userLogged", "Ricardo");
+    setCreateToaster(false);
+
+    const isEmailValid = email.match(/\S+@\w+\.\w{2,6}(\.\w{2})?/i);
+
+    if (email === "" || password === "") {
+      setCreateToaster(true);
+      return setMsgError("Todos os campos deve ser preenchidos.");
+    }
+    if (!isEmailValid) {
+      setCreateToaster(true);
+      return setMsgError("E-mail foi digitado num formato inválido.");
+    }
+
+    try {
+      const result = await auth.signInWithEmailAndPassword(email, password);
+
+      localStorage.setItem("userLogged", result.user.email);
+
       setLoading(true);
       setTimeout(() => {
         return history.push("/dashboard");
       }, 3000);
-    } else {
-      setUsername("");
-      setPassword("");
+    } catch (err) {
+      console.log("catch", err.message);
+      setMsgError(err.message);
+
       setCreateToaster(true);
     }
   };
@@ -46,10 +68,10 @@ const Login = () => {
   const handleChange = (e) => {
     setCreateToaster(false);
     const { value, name } = e.target;
-    console.log(value, name);
+
     switch (name) {
-      case "username":
-        setUsername(value);
+      case "email":
+        setEmail(value);
         break;
       default:
         setPassword(value);
@@ -81,7 +103,7 @@ const Login = () => {
                       color="danger"
                     >
                       <CToastHeader>Erro</CToastHeader>
-                      <CToastBody>Login ou senha incorretos</CToastBody>
+                      <CToastBody>{msgError}</CToastBody>
                     </CToast>
                   </CToaster>
                 )}
@@ -97,12 +119,12 @@ const Login = () => {
                       </CInputGroupPrepend>
                       <CInput
                         autoFocus
-                        value={username}
-                        name="username"
+                        value={email}
+                        name="email"
                         onChange={handleChange}
                         type="text"
-                        placeholder="Usuário"
-                        autoComplete="username"
+                        placeholder="E-mail"
+                        autoComplete="email"
                       />
                     </CInputGroup>
                     <CInputGroup className="mb-4">

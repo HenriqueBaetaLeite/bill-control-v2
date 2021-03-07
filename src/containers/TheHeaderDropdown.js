@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+
 import {
   CDropdown,
   CDropdownItem,
@@ -7,12 +7,12 @@ import {
   CDropdownToggle,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
+import { auth } from "src/utils-service/firebase";
 
 const TheHeaderDropdown = () => {
-  const history = useHistory();
   const logout = () => {
+    auth.signOut();
     localStorage.clear("userLogged");
-    history.push("/login");
   };
   return (
     <CDropdown inNav className="c-header-nav-items mx-2" direction="down">
