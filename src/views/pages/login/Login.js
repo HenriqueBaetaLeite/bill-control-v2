@@ -109,6 +109,7 @@ const Login = () => {
                 )}
                 <CCardBody>
                   <CForm onSubmit={handleLogin}>
+                    <h4>RacLeite Controle Financeiro</h4>
                     <h1>Login</h1>
                     <p className="text-muted">Acesse sua conta</p>
                     <CInputGroup className="mb-3">

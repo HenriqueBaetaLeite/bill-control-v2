@@ -2,8 +2,6 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firebase-firestore";
 
-import "dotenv/config";
-
 const firebaseConfig = {
   apiKey: "AIzaSyDakzCt2PCDELr0IdkTpoLXPyYAF4NefcU",
   authDomain: "bill-control-54b6f.firebaseapp.com",
@@ -34,9 +32,3 @@ export const gmailLogin = async () => {
 export const auth = app.auth();
 
 export default app;
-
-export const userLogin = async () => {
-  const provider = new firebase.auth.EmailAuthProvider();
-  const result = await app.auth().signInWithEmailAndPassword(provider);
-  return result;
-};
